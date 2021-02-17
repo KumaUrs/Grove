@@ -35,8 +35,8 @@ public class DeckController
 	public void drawCard() 
 	{
 		// Temp card to save 1 search algorithm
-		Card tempCard = playerDeck.get(playerDeck.size());
-		playerDeck.remove(playerDeck.size());
+		Card tempCard = playerDeck.get(playerDeck.size()-1);
+		playerDeck.remove(playerDeck.size()-1);
 		
 		playerHand.add(tempCard);
 		affinityMultiplier(tempCard.elementalType);
@@ -66,7 +66,7 @@ public class DeckController
 	
 	public void drawHand()
 	{
-		for(int i = 0; i > 6; i++)
+		for(int i = 0; i < 7; i++)
 		{
 			drawCard();
 		}
@@ -94,16 +94,35 @@ public class DeckController
 		return playerDeck;
 	}
 
+	 //loops through players hand and displays through output.
+	public void displayHand() 
+	{
+		for(Card c: playerHand)
+		{
+			System.out.println(c.toString());
+		}
+	}
+	
+	
+	public void displayGraveyard() 
+	{
+		for(Card c: playerGraveyard)
+		{
+			System.out.println(c.toString());
+		}
+	}
+	
 	
 	/**
 	 * Creates 52 objects of type card, then places them into the player deck.
 	 */
 	private void createPlayerDeck() 
 	{
-		for(int i = 0; i > 51; i++)
+		
+		for(int i = 0; i < 51; i++)
 		{
 			// look up the list and or database of cards
-			playerDeck.add(new Card("Name", "Cost", "Description", Range.MELEE,
+			playerDeck.add(new Card("Name", "Description",(byte) 1,(byte) 1, Range.MELEE,
 					SpellType.OFFENSIVE, Element.AIR));
 		}
 	}
